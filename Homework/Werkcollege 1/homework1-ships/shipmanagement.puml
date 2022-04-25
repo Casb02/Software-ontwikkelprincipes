@@ -1,0 +1,80 @@
+@startuml ShipMananagement DomainModel
+left to right direction
+
+
+Object Ship
+
+Ship : name
+Ship : maxContainers
+Ship : maxWeight
+Ship : depthNeeded
+
+
+
+
+Object Port
+
+Port : name
+Port : maxDepth
+
+
+
+
+Object Container
+
+Container : weight
+
+
+
+
+Ship .. Container : carries
+Ship .. Port : destination
+Ship .. Port : dockedat
+Container .. Port : destination
+
+
+
+
+
+@enduml
+
+@startuml ShipMananagement System
+left to right direction
+
+
+class ShipMananagement {
+
+    +boolean addShip(Ship)
+    +Ship getShip(String)
+
+    +boolean addPort(Port)
+    +Port getPort(String)
+
+}
+
+@enduml
+
+@startuml ShipMananagement Use Case
+left to right direction
+
+actor ship as s
+
+package shipmanagement {
+    usecase "Add destination" as UC1
+    usecase "Arrive at" as UC2
+    usecase "Load container" as UC3
+    usecase "Unload containers" as UC4
+    usecase "Leave port" as UC5
+}
+
+s --> UC1
+s --> UC2
+s --> UC3
+s --> UC4
+s --> UC5
+
+
+
+
+
+@enduml
